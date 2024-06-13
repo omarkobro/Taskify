@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet"  id="themeStylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>Taskify</title>
+</head>
+<body>
+
+
+<nav class="navbar navbar-expand-lg ">
+    <div class="container ">
+        <a class="navbar-brand fs-2 " href="#">Taskify</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fa-solid fa-bars"></i>
+        </button>
+        <button id="moonIcon" class="theme-toggle-btn " onclick="toggleTheme()">
+            <i class="fa-solid fa-moon "></i>
+        </button>
+        <button id="sunIcon" class="theme-toggle-btn" onclick="toggleTheme()" style="display: none;">
+            <i class="fa-solid fa-sun text-warning"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto me-5 mb-lg-0 fs-5 ">
+            <li class="nav-item">
+            <a class="nav-link active home-link " aria-current="page" href="#home">Home</a>
+            </li>
+            <li class="nav-item ">
+            <a class="nav-link " href="#tasks"><Span class="link-1">Tasks</Span></a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link " href="#about"><span class="link-1">About</span></a>
+            </li>
+            <li class="nav-item ">
+            <a class="nav-link " href="#contact"><span class="link-1">Contact</span></a>
+            </li>
+        </ul>
+        </div>
+    </div>
+    </nav>
+    <!--  -->
+    <div id="home" class="home-content text-center d-flex justify-content-center align-items-center align-content-center position-relative " style="background-image: url(assets/taskify\ 2.jpg);">
+    <div class="overlay-itro"></div>
+    <div class="container text-white position-relative">
+        <h1 class="home-title mb-4">Welcome to Taskify :)</h1>
+        <p class="home-subtitle fs-1 ">Get Done With Your Tasks In No Time !</p>
+    </div>
+    </div>
+<!--  -->
+
+    <!-- Start tasks section -->
+    
+    <div id="tasks" class="container mt-5 ">
+        <h1 class="text-center task-sec-heading">Tasks</h1>
+        <!-- Task Form -->
+        <div class="card mt-3  ">
+            <div class="card-header">Add Task</div>
+            <div class="card-body">
+                <form id="taskForm" novalidate>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input placeholder="e.g. (Prepare lunch)" type="text" class="form-control" id="title" required>
+                        <div class="invalid-feedback">
+                            Please provide a task title.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <input placeholder="e.g. (Pasta and meat)" type="text" class="form-control" id="description" required>
+                        <div class="invalid-feedback">
+                            Please provide a task description.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="deadline" class="form-label">Deadline</label>
+                        <input type="date" class="form-control" id="deadline" required>
+                        <div class="invalid-feedback">
+                            Please provide a valid deadline.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn addTask text-white">Add Task</button>
+                </form>
+            </div>
+        </div>
+        
+        <!-- Task List -->
+        <div class="card mt-3" >
+            <div class="card-header">Tasks</div>
+            <div class="card-body ">
+                <div class="d-flex justify-content-end mb-3">
+                    <select id="sortOptions" class="form-select w-auto">
+                        <option value="default">Sort by...</option>
+                        <option value="title">Title</option>
+                        <option value="deadline">Deadline</option>
+                    </select>
+                </div>
+                <ul class="list-group bg-black" id="taskList"></ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- View Task -->
+    <div class="modal fade" id="taskModal" tabindex="-1" aria-labelledby="taskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="taskModalLabel">Task Description</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="taskModalBody"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+        <!-- Edit Task -->
+    <div class="modal fade" id="editTaskModal" tabindex="-1" aria-labelledby="editTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editTaskModalLabel">Edit Task</h5>
+                    <button type="button" class="btn-close " data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editTaskForm" >
+                        <input type="hidden" id="editTaskId">
+                        <div class="mb-3">
+                            <label for="editTitle" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="editTitle" >
+                            <div class="invalid-feedback">
+                                Please provide a task title.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDescription" class="form-label">Description</label>
+                            <input type="text" class="form-control" id="editDescription" >
+                            <div class="invalid-feedback">
+                                Please provide a task description.
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="editDeadline" class="form-label">Deadline</label>
+                            <input type="date" class="form-control" id="editDeadline" >
+                            <div class="invalid-feedback">
+                                Please provide a valid deadline.
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- End tasks section -->
+
+<!-- ===========About Company=================== -->
+<section id="about" class="about-sec py-5">
+    <div class="container">
+        <div class="row align-items-center g-sm-4">
+            <div class="col-md-6">
+                <div class="about-info">
+                    <h2 class="about-header text-center fw-bold fs-2">About Our Company</h2>
+                    <p class="p-0 m-0 fs-5 text-sm-center text-md-start"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore assumenda error facere dolores dolorem vero inventore ipsa ad adipisci, voluptate quod commodi ducimus voluptatibus, quas excepturi quis optio debitis accusamus? Sit repellat perspiciatis delectus animi nihil corporis, vitae alias laudantium?</p>
+                    <div class="qoute-paragraph my-5 bg-white my-2 ">
+                        <p class="fs-3 p-0 m-0">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, aliquam!
+                        </p>
+                        <i class="fa-solid fa-quote-right qoute"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 about-backgroung">
+                <div class="row justify-content-start">
+                    <div class="img-container mb-2">
+                        <img src="assets/about.jpg" alt="">
+                    </div>
+                </div>
+                <div class="row justify-content-end">
+                    <div class="img-container mt-2">
+                        <img src="assets/about 2.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===========Start of Contact Section=========== -->
+<section id="contact" class="form-section mt-5" >
+<div class="container position-relative p-5 form-container ">
+    <div class="row">
+    <div class="col-sm-12">
+        <div class="contact-mf">
+        <div id="contact" class="box-shadow-full">
+            <div class="row">
+            <div class="col-md-6">
+                <div class="title-box-2">
+                <h5 class="title-left fs-2">
+                    Message Us
+                </h5>
+                </div>
+                <div class="form-underline mb-5"></div>
+
+                <div>
+                    <form id="contactForm" action="" method="" role="" novalidate>
+                        <div class="row">
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label class="mb-2" for="name">Your Name</label>
+                                    <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+                                    <div class="invalid-feedback">
+                                        Please provide your name.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label class="mb-2" for="email">Your Email</label>
+                                    <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+                                    <div class="invalid-feedback">
+                                        Please provide a valid email.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label class="mb-2" for="subject">Subject</label>
+                                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
+                                    <div class="invalid-feedback">
+                                        Please provide a subject.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <div class="form-group">
+                                    <label class="mb-2" for="message">Message</label>
+                                    <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message" maxlength="100" required></textarea>
+                                    <div class="invalid-feedback">
+                                        Please provide a message (max 100 characters).
+                                    </div>
+                                    <small id="charCount" class="form-text text-muted">0/100 characters used</small>
+                                </div>
+                            </div>
+                            <div class="col-md-12 text-center p-0">
+                                <button type="submit" class="button button-a button-big rounded-pill sendMessage px-4 py-2 fs-5 border-0 text-white">Send Message</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <div class="title-box-2 pt-4 pt-md-0">
+                <h5 class="title-left fs-2">
+                    Get in Touch
+                </h5>
+                </div>
+                <div class="form-underline mb-5"></div>
+
+                <div class="more-info">
+                <p class="lead">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis dolorum dolorem soluta quidem
+                    expedita aperiam aliquid at.
+                    Totam magni ipsum suscipit amet? Autem nemo esse laboriosam ratione nobis
+                    mollitia inventore?
+                </p>
+                <ul class="list-ico list-unstyled ">
+                    <li class="mb-3 " ><i class="fa-solid fa-location-dot contactIcons   me-3"></i><span>329 WASHINGTON ST BOSTON, MA 02108</span></li>
+                    <li class="mb-3" ><i class="fa-solid fa-mobile-screen-button contactIcons  me-3"></i><span>(617) 557-0089</span></li>
+                    <li class="mb-3" ><i class="fa-regular fa-envelope contactIcons   me-3"></i><span>contact@example.com</span></li>
+                </ul>
+                </div>
+                <div class="socials d-flex ">
+                <ul class="list-unstyled d-flex  ">
+                    <li class="p-0 m-0"><a  class="p-0 m-0"><span class="ico-circle"><i class="fa-brands fa-facebook fs-4"></i></span></a></li>
+                    <li class="p-0 m-0"><a class="p-0 m-0" href=""><span class="ico-circle"><i class="fa-brands fa-instagram fs-4"></i></span></a></li>
+                    <li class="p-0 m-0"><a  class="p-0 m-0" href=""><span class="ico-circle"><i class="fa-brands fa-twitter fs-4"></i></span></a></li>
+                    <li class="p-0 m-0" ><a class="p-0 m-0" href=""><span class="ico-circle"><i class="fa-brands fa-linkedin fs-4"></i></span></a></li>
+                </ul>
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+</div>
+</section>
+
+
+<!-- ===========End of Contact Section=========== -->
+    <div>
+    <script src="js/all.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/app.js"></script>
+    </div>
+</body>
+</html>

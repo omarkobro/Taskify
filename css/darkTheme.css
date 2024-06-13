@@ -1,0 +1,380 @@
+*{
+    box-sizing: border-box;
+    }
+    
+    body{
+        font-family: 'Roboto', sans-serif;
+        box-sizing: border-box;
+        background-color: #222;
+    }
+    
+#moonIcon,
+#sunIcon {
+    cursor: pointer;
+    background: none;
+    border: none;
+    outline: none;
+    width: 20px;
+    height: 20px;
+    padding: 0;
+}
+
+
+#moonIcon{
+    color: grey
+}
+.theme-toggle-btn {
+    position: fixed;
+    bottom: 5%;
+    right: calc(0% + 20px) ;
+    z-index: 99999999;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+    /* ===========Start  Home Section ================== */
+    .navbar{
+        position: fixed;
+        width: 100%;
+        background-color: #ebebebe7;
+        z-index: 10;
+    }
+
+    .navbar .navbar-brand {
+        color: black !important;
+    }
+    
+    .nav-link .active{
+        color: black;
+
+    }
+    .navbar .navbar-nav .nav-link {
+        color: black;
+        padding: 1rem;
+        transition: all 300ms ;
+    
+    }
+    
+    
+    .home-link::after{
+        content: "";
+        height: 3px;
+        width: 90%;
+        background-color: #000;
+        display: block;
+    }
+    
+    .drop-dw-border::after{
+        content: "";
+        height: 3px;
+        width: 0%;
+        background-color: #000;
+        transition: all 300ms ease-in-out;
+        display: block;
+    }
+    
+    .nav-item:hover .drop-dw-border::after{
+        content: "";
+        width: 90%;
+        height: 3px;
+        background-color: #000;
+        transition: all 300ms ease-in-out;
+        display: block;
+    }
+    
+    .link-1::after{
+        content: "";
+        height: 3px;
+        width: 0%;
+        background-color: #000;
+        transition: all 300ms ease-in-out;
+        display: block;
+    }
+    .nav-item:hover .link-1::after{
+        content: "";
+        width: 90%;
+        height: 3px;
+        background-color: #000;
+        transition: all 300ms ease-in-out;
+        display: block;
+    }
+    @media (max-width: 991px) { 
+        .home-link::after{
+            content: "";
+            height: 3px;
+            width: 10%;
+            background-color: #000;
+            display: block;
+        }
+        .link-1::after{
+            content: "";
+            height: 3px;
+            width: 0%;
+            background-color: #000;
+            transition: all 300ms ease-in-out;
+            display: block;
+        }
+        .nav-item:hover .link-1::after{
+            content: "";
+            width: 10%;
+            height: 3px;
+            background-color: #000;
+            transition: all 300ms ease-in-out;
+            display: block;
+        }
+    }
+    .navbar .container .navbar-toggler{
+        color: black;
+        border-color: black;
+    }
+    
+    .navbar .container .navbar-toggler-icon{
+        color: black;
+    }
+    .navbar .container .navbar-toggler:focus{
+        box-shadow: none;
+    }
+    .home-content{
+        position: relative;
+        height: 100vh;
+        color: #fff;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center center;
+    }
+    .home-content .overlay-itro {
+        background-color: rgba(0, 0, 0, 0.6);
+        position: absolute;
+        top: 0;
+        left: 0px;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+        opacity: 0.9;  
+    }
+    .home-title{
+        font-size:4.5rem;
+    }
+    .home-subtitle {
+        display: flex;
+        justify-content: center;
+        color: white;
+    }
+    .home-subtitle {
+        display: flex;
+        justify-content: center;
+        color: white;
+    }
+    
+    
+    /* ===========End  Home Section ================== */
+
+    /* ===========Start Task Section ================== */
+    .task-sec-heading{
+        color: white;
+    }
+    .card {
+        margin-bottom: 1rem;
+        background-color: #282828;
+        color: white;
+    }
+
+    input[type="checkbox" i] {
+        background-color: initial;
+        cursor: pointer;
+        appearance: auto;
+        box-sizing: border-box;
+        margin: 3px 3px 3px 4px;
+        padding: initial;
+        border: initial;
+    }
+    .testLI{
+        background-color: #333;
+        color: white;
+    }
+    @media (max-width: 767px) { 
+        .testLI{
+            flex-direction: column;
+            width: 100%;
+        }
+    
+        .testLI .div1 {
+            width: 100%;
+            text-align: left;
+        }
+        
+        .testLI .div2 {
+            display: flex;
+            gap: 5px;
+            width: 100%;
+            text-align: center;
+        }
+        .testLI .div2 button {
+            width: 50%;
+        }
+    }
+    
+    @media (min-width: 768px) { 
+        
+        .testLI .div1 {
+            width: 70%;
+            text-align: left;
+        }
+        
+        .testLI .div2 {
+            width: 30%;
+            text-align: right;
+        }
+    }
+
+
+    .modal-content{
+        background-color: #282828 ;
+        color: white;
+    }
+
+    /* ===========End Task Section ================== */
+
+
+   /* ===========Start Contact Section ================== */ 
+    .form-section{
+        position: relative;
+        color: #fff;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center center;
+}
+    .form-container{
+        border-radius: 5px;
+        -webkit-border-radius: 5px;
+        -moz-border-radius: 5px;
+        -ms-border-radius: 5px;
+        -o-border-radius: 5px;
+    }
+    
+    .form-underline{
+        background-color: #ddba1b;
+        width: 16%;
+        height: 3px;
+        text-align: center;
+    }
+    .form-container{
+        background-color: #282828;
+    }
+    .socials .ico-circle{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        align-content: center;
+        text-align: center;
+        width: 50px;
+        height: 50px;
+        border: 3px solid #ddba1b;
+        padding: 15px;
+        margin: 7px;
+        border-radius: 100%;
+        transition: all 300ms ease-in-out;
+        color: white;
+    }
+    
+    @media (max-width: 440px) {
+        .socials{
+            width: 100%;
+            justify-content: center;
+        }
+        .socials ul {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+    }
+    .socials .ico-circle:hover{
+        background-color: #ddba1b;
+        border: 3px solid #bbc1cab7;
+        transition: all 300ms ease-in-out;
+        color: black;
+    
+    }
+
+    .contactIcons{
+        color:#ddba1b ;
+    }
+    .sendMessage, .addTask{
+        background-color:#ddba1b ;
+    }
+    .sendMessage:hover , .addTask:hover{
+        background-color: #f9d11f;
+    }
+   /* ===========End Contact Section ================== */ 
+
+
+   /* ===========Start About Section ================== */ 
+
+.about-backgroung{
+    background-image: url("../assets/5276-removebg-preview.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+@media (max-width: 440px) {
+
+
+}
+.img-container {
+    width: 50%;
+    padding: 0%;
+}
+.img-container img{
+    width: 100%;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    -ms-border-radius: 5px;
+    -o-border-radius: 5px;
+}
+
+.qoute-paragraph{
+    width: 85%;
+    padding: 15px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+    border-left: 3px solid #ddba1b;
+    position: relative;
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.2);
+    color: black
+}
+.qoute{
+    position: absolute;
+    right: 0%;
+    top: 70%;
+    width: 30px;
+    font-size: 55px;
+    color: #ddba1b;
+}
+
+
+#about{
+    background-color:#282828;
+    color: white;
+}
+/* ===========End About Section ================== */ 
+
+
+.form-control:focus{
+    box-shadow: 0 0 0 0.15rem #ebc51a8e ;
+    border-color: #f0fe86
+}
+
+#sortOptions{
+    background-color: #333;
+    color: #fff;
+}
